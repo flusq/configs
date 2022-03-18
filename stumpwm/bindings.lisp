@@ -21,10 +21,10 @@
 
 
 (define-key *exec-map* (kbd "t") "exec alacritty")
-(defprogram-shortcut qutebrowser :map *exec-map* :key (kbd "b"))
+(defprogram-shortcut qutebrowser :map *exec-map* :props '(:class "qutebrowser") :key (kbd "b"))
 (defprogram-shortcut emacs :map *exec-map* :key (kbd "e"))
 
-(loop for i from 1 to 6
+(loop for i from 1 to 5
       for key = (format nil "s-F~d" i)
       for cmd = (format nil "gselect ~d" i)
       do (define-key *top-map* (kbd key) cmd))

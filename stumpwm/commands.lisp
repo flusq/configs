@@ -54,20 +54,27 @@
                              (uiop:launch-program '("flameshot" "screen" "-r") :output file)))))))             
 
 
-(defun select-file (directory select-string)
+(defun select-file (find-directory select-string)
   (let* ((directory-files (mapcar 
                            (lambda (pathname)
                              (namestring (make-pathname :directory nil :defaults pathname)))
-                           (uiop:directory-files directory)))
+                           (uiop:directory-files find-directory)))
          (selected-file (select-from-menu
                          (current-screen)
                          directory-files
                          select-string)))
     (merge-pathnames
-     directory
+     find-directory
      (car selected-file))))
 
 (defcommand select-wallpaper () ()
   (let* ((wallpapers-directory #p"/home/runner/media/pictures/wallpapers/")
          (selected-wallpaper-file (select-file wallpapers-directory "Select wallpeper: ")))
     (uiop:launch-program (list "feh" "--bg-fill" (namestring selected-wallpaper-file)))))
+
+(defcommand open-notes () ()
+  (let* ((wallpapers-directory #p"/home/runner/media/pictures/notes/")
+         (selected-wallpaper-file (select-file wallpapers-directory "Select note: ")))
+    (uiop:launch-program (list "sxiv" "" (namestring selected-wallpaper-file)))))
+
+

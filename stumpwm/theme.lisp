@@ -1,7 +1,7 @@
 (in-package :stumpwm)
 
-(setf *startup-message* "Hello user")
-(uiop:launch-program "feh --bg-fill ~/media/pictures/wallpapers/lap.jpg")
+(setf *startup-message* nil)
+(uiop:launch-program "feh --bg-fill ~/media/pictures/wallpapers/black.jpg")
 
 (setf *colors* 
     `("#2b303b" ;black
